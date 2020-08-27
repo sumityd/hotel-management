@@ -1,0 +1,16 @@
+<div class="df ai" style="border-bottom: 1px solid lightgrey;height: 40px;padding: 0px 15px;">
+    <div class="mf fw flex-30">Name</div>
+    <div class="mf fw flex-30">Mobile Number</div>
+    <div class="mf fw flex-30">Tables</div>
+    <div class="mf fw">Reservation Date</div>
+</div>
+
+
+<div *ngFor="let user of usersList">
+    <div class="df ai" style="border-bottom: 1px solid lightgrey;height: 40px;padding: 0px 15px;">
+        <div class="sf flex-30">{{user?.name}}</div>
+        <div class="sf flex-30">{{user?.mobileNumber}}</div>
+        <div class="sf flex-30">{{user?.chairNo}}</div>
+        <div class="sf">{{user?.reservationTime | date : "dd MMM yyyy hh:mm a "}}</div>
+    </div>
+</div>

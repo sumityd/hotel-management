@@ -1,0 +1,11 @@
+<div class="df ai header-height cl bc" style="padding: 5px;">
+    <span class="lf fw">Hotel Management</span>
+    <button mat-icon-button style="margin-left: 15px;" (click)="addReservationForm()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-button style="margin-left: 40px;" (click)="openFilter()" class="filter-btn">
+        Filter
+    </button>
+</div>
+
+<app-hotel-management-list [usersList]="users"></app-hotel-management-list>

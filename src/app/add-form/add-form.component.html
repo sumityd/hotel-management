@@ -1,0 +1,44 @@
+<div class="df ai jc" style="height: 50px;padding: 0px 10px;border-bottom: 1px solid lightgrey;">
+    <div class="mf fw">Add Your Reservation</div>
+    <button mat-icon-button tabindex="-1" (click)="dialogClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div class="df" style="flex-direction: column;padding: 10px 10px 0px 10px;;height: 55vh;">
+    <div class="df">
+        <mat-form-field style="width: 45%;" appearance="outline">
+            <mat-label>Enter Your Name</mat-label>
+            <input matInput placeholder="name" [(ngModel)]="user.name">
+        </mat-form-field>
+
+        <mat-form-field style="width: 45%;margin-left: 15px;" appearance="outline">
+            <mat-label>Enter Phone Number</mat-label>
+            <input matInput placeholder="Mobile Number" [(ngModel)]="user.mobileNumber" maxlength="10"
+                (keypress)="numbersOnly($event)" required>
+        </mat-form-field>
+    </div>
+    <div class="df">
+        <mat-form-field style="width: 45%;" appearance="outline">
+            <mat-label>Tables</mat-label>
+            <mat-select [(ngModel)]="user.chairNo">
+                <mat-option *ngFor="let chairNumber of chairNumbers" [value]="chairNumber">{{chairNumber}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="width: 45%;margin-left: 15px;" appearance="outline">
+            <mat-label>Select Your Reservation Date</mat-label>
+            <input matInput [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" (dateTimeChange)="selectedDate($event)"
+                placeholder="Reservation Date" />
+            <button matSuffix mat-icon-button [owlDateTimeTrigger]="dt2" aria-label="Clear">
+                <mat-icon>calendar_today</mat-icon>
+            </button>
+            <owl-date-time #dt2></owl-date-time>
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="df ai jc" style="padding: 0px 10px;">
+    <button mat-button class="cl bc" (click)="dialogClose()">Cancel</button>
+    <button mat-button class="cl bc" (click)="saveDetails()">Save</button>
+</div>

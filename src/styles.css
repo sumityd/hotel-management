@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.df {
+  display: flex;
+}
+
+.ai {
+  align-items: center;
+}
+
+.sf {
+  font-size: 12px;
+}
+
+.mf {
+  font-size: 14px;
+}
+
+.lf {
+  font-size: 16px;
+}
+
+.fw {
+  font-weight: 500;
+}
+
+.cl {
+  color: white;
+}
+
+.bc {
+  background-color: #0086da;
+}
+
+.jc {
+  justify-content: space-between;
+}
+
+.lg {
+  color: #a6a6a6;
+}

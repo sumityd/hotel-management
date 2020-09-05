@@ -8,6 +8,10 @@ export enum HotelActionTypes {
   FETCH_USER_DETAIL = "[HotelManagement] fetchUserDetail",
   FETCH_USER_DETAIL_SUCCESS = "[HotelManagement] fetchUserDetailSuccess",
   FETCH_USER_DETAIL_FAILED = "[HotelManagement] fetchUserDetailFailed",
+
+  APPLY_FILTER = "[HotelManagement] applyFilter",
+  APPLY_FILTER_SUCCESS = "[HotelManagement] applyFilterSuccess",
+  APPLY_FILTER_FAILED = "[HotelManagement] applyFilterFailed",
 }
 
 export class AddUserDetail implements Action {
@@ -36,10 +40,26 @@ export class FetchUserDetailFailed implements Action {
   constructor(public payload: any) {}
 }
 
+export class ApplyFilter implements Action {
+  readonly type = HotelActionTypes.APPLY_FILTER;
+  constructor(public payload: any) {}
+}
+export class ApplyFilterSuccess implements Action {
+  readonly type = HotelActionTypes.APPLY_FILTER_SUCCESS;
+  constructor(public payload: any) {}
+}
+export class ApplyFilterFailed implements Action {
+  readonly type = HotelActionTypes.APPLY_FILTER_FAILED;
+  constructor(public payload: any) {}
+}
+
 export type HotelActions =
   | AddUserDetail
   | AddUserDetailSuccess
   | AddUserDetailFailed
   | FetchUserDetail
   | FetchUserDetailSuccess
-  | FetchUserDetailFailed;
+  | FetchUserDetailFailed
+  | ApplyFilter
+  | ApplyFilterSuccess
+  | ApplyFilterFailed;

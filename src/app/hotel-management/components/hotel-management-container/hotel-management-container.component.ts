@@ -4,7 +4,13 @@ import { MatDialog } from "@angular/material";
 import { HotelManagementFilterComponent } from "../hotel-management-filter/hotel-management-filter.component";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/interface";
-import { FetchUserDetail, AddUserDetail } from "../../actions/hotel-management.actions";
+import {
+  FetchUserDetail,
+  AddUserDetail,
+  ApplyFilter,
+} from "../../actions/hotel-management.actions";
+import { userListSelctor } from "../../reducers/hotel-management.selector";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-hotel-management-container",
@@ -14,11 +20,18 @@ import { FetchUserDetail, AddUserDetail } from "../../actions/hotel-management.a
 export class HotelManagementContainerComponent implements OnInit {
   users: any[] = [];
   chairNumbers: any[] = [...Array(10).keys()];
+  subscription$: Subscription = new Subscription();
 
   constructor(public dialog: MatDialog, private _store: Store<AppState>) {}
 
   ngOnInit() {
     this._store.dispatch(new FetchUserDetail({}));
+
+    this.subscription$.add(
+      this._store.select(userListSelctor).subscribe((list) => {
+        this.users = list;
+      })
+    );
   }
 
   addReservationForm() {
@@ -28,8 +41,7 @@ export class HotelManagementContainerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((data: any) => {
       if (data) {
-        this.users.push(data);
-        this._store.dispatch(new AddUserDetail(data))
+        this._store.dispatch(new AddUserDetail(data));
       }
     });
   }
@@ -42,8 +54,12 @@ export class HotelManagementContainerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((data: any) => {
       if (data) {
-        this.users = data;
+        this._store.dispatch(new ApplyFilter(data))
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 }

@@ -16,6 +16,10 @@ export class HotelManagementService {
     });
   }
 
+  applyFilter(obj: any): Observable<any> {
+    return of(obj);
+  }
+
   fetchUserDetail(): Observable<any> {
     return of([
       {

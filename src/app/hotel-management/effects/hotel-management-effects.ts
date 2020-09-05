@@ -7,6 +7,8 @@ import {
   AddUserDetailSuccess,
   FetchUserDetailSuccess,
   FetchUserDetailFailed,
+  ApplyFilterSuccess,
+  ApplyFilterFailed,
 } from "../actions/hotel-management.actions";
 import { HotelManagementService } from "../services/hotel-management.service";
 import { switchMap, map, catchError } from "rxjs/operators";
@@ -40,6 +42,17 @@ export class HotelEffects {
         catchError((_) =>
           of(new FetchUserDetailFailed("Unexpected error occurred"))
         )
+      )
+    )
+  );
+
+  @Effect()
+  applyFilter$: Observable<any> = this.actions$.pipe(
+    ofType(HotelActionTypes.APPLY_FILTER),
+    switchMap((action: any) =>
+      this.HotelService.applyFilter(action.payload).pipe(
+        map((action: any) => new ApplyFilterSuccess(action)),
+        catchError((_) => of(new ApplyFilterFailed("Unexpected error occured")))
       )
     )
   );

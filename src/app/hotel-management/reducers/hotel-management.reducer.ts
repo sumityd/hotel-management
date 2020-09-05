@@ -13,7 +13,6 @@ export function HotelReducer(
 ) {
   switch (action.type) {
     case HotelActionTypes.FETCH_USER_DETAIL_SUCCESS: {
-      console.log('called fetch data',action.payload);
       return {
         ...state,
         userData: action.payload,
@@ -40,6 +39,23 @@ export function HotelReducer(
     }
 
     case HotelActionTypes.ADD_USER_DETAIL_FAILED: {
+      return {
+        ...state,
+        message: null,
+        error: action.payload,
+      };
+    }
+
+    case HotelActionTypes.APPLY_FILTER_SUCCESS: {
+      return {
+        ...state,
+        userData: action.payload,
+        message: null,
+        error: null,
+      };
+    }
+
+    case HotelActionTypes.APPLY_FILTER_FAILED: {
       return {
         ...state,
         message: null,

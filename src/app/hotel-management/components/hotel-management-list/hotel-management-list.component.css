@@ -1,0 +1,12 @@
+.flex-30 {
+  flex: 1 0 30%;
+}
+
+.circle {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  line-height: 1.9rem;
+  text-align: center;
+  margin-right: 9px;
+}

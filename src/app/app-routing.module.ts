@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HotelManagementContainerComponent } from './hotel-management-container/hotel-management-container.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-
+// implementing lazy loading here
 const routes: Routes = [
- {
-  path: "",
-  component: HotelManagementContainerComponent,
-  children: [
-
-  ]
- }
+  {
+    path: "hotel",
+    loadChildren: () =>
+      import("./hotel-management/hotel-management.module").then(
+        (m) => m.HotelManagementModule
+      ),
+  },
+  { path: "**", redirectTo: "hotel", pathMatch: "full" },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

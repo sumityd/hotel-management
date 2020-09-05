@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
+import { User, intialUserState } from "../../reducers/hotel-management.state";
 
 @Component({
   selector: "app-add-form",
@@ -7,19 +8,13 @@ import { MatDialogRef } from "@angular/material";
   styleUrls: ["./add-form.component.css"],
 })
 export class AddFormComponent implements OnInit {
-  user: any = {
-    name: null,
-    mobileNumber: null,
-    chairNo: null,
-    reservationTime: null,
-  };
+  user: User = { ...intialUserState };
 
   chairNumbers: any[] = [...Array(10).keys()];
 
   constructor(public dialogRef: MatDialogRef<AddFormComponent>) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   numbersOnly(event: any) {
     const pattern = /[0-9]/;

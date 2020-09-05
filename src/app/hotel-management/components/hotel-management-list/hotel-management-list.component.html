@@ -8,7 +8,10 @@
 
 <div *ngFor="let user of usersList">
     <div class="df ai" style="border-bottom: 1px solid lightgrey;height: 40px;padding: 0px 15px;">
-        <div class="sf flex-30">{{user?.name}}</div>
+        <div class="df ai sf flex-30">
+            <span class="circle sf fw bc cl">{{user?.name | nameFormat}}</span>
+            <span class="sf">{{user?.name}}</span>
+        </div>
         <div class="sf flex-30">{{user?.mobileNumber}}</div>
         <div class="sf flex-30">{{user?.chairNo}}</div>
         <div class="sf">{{user?.reservationTime | date : "dd MMM yyyy hh:mm a "}}</div>

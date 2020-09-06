@@ -9,9 +9,11 @@ import {
   FetchUserDetailFailed,
   ApplyFilterSuccess,
   ApplyFilterFailed,
+  HotelActions,
 } from "../actions/hotel-management.actions";
 import { HotelManagementService } from "../services/hotel-management.service";
 import { switchMap, map, catchError } from "rxjs/operators";
+import { Action } from '@ngrx/store';
 
 Injectable();
 export class HotelEffects {
@@ -21,9 +23,9 @@ export class HotelEffects {
   ) {}
 
   @Effect()
-  addUserDetail$: Observable<any> = this.actions$.pipe(
+  addUserDetail$: Observable<Action> = this.actions$.pipe(
     ofType(HotelActionTypes.ADD_USER_DETAIL),
-    switchMap((action: any) =>
+    switchMap((action: HotelActions) =>
       this.HotelService.addUserDetail(action.payload).pipe(
         map((action: any) => new AddUserDetailSuccess(action)),
         catchError((_) =>
@@ -34,9 +36,9 @@ export class HotelEffects {
   );
 
   @Effect()
-  fetchUserDetail$: Observable<any> = this.actions$.pipe(
+  fetchUserDetail$: Observable<Action> = this.actions$.pipe(
     ofType(HotelActionTypes.FETCH_USER_DETAIL),
-    switchMap((action: any) =>
+    switchMap((action: HotelActions) =>
       this.HotelService.fetchUserDetail().pipe(
         map((action: any) => new FetchUserDetailSuccess(action)),
         catchError((_) =>
@@ -47,9 +49,9 @@ export class HotelEffects {
   );
 
   @Effect()
-  applyFilter$: Observable<any> = this.actions$.pipe(
+  applyFilter$: Observable<Action> = this.actions$.pipe(
     ofType(HotelActionTypes.APPLY_FILTER),
-    switchMap((action: any) =>
+    switchMap((action: HotelActions) =>
       this.HotelService.applyFilter(action.payload).pipe(
         map((action: any) => new ApplyFilterSuccess(action)),
         catchError((_) => of(new ApplyFilterFailed("Unexpected error occured")))

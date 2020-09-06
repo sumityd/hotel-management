@@ -9,13 +9,13 @@
     <div class="df">
         <mat-form-field style="width: 45%;" appearance="outline">
             <mat-label>Enter Your Name</mat-label>
-            <input matInput placeholder="name" [(ngModel)]="user.name">
+            <input matInput placeholder="name" id="name" [(ngModel)]="user.name" required>
         </mat-form-field>
 
         <mat-form-field style="width: 45%;margin-left: 15px;" appearance="outline">
             <mat-label>Enter Phone Number</mat-label>
-            <input matInput placeholder="Mobile Number" [(ngModel)]="user.mobileNumber" maxlength="10"
-                (keypress)="numbersOnly($event)" required>
+            <input matInput placeholder="Mobile Number" id="mobNumber" [(ngModel)]="user.mobileNumber" maxlength="10"
+                (keypress)="numbersOnly($event)">
         </mat-form-field>
     </div>
     <div class="df">
@@ -28,8 +28,8 @@
 
         <mat-form-field style="width: 45%;margin-left: 15px;" appearance="outline">
             <mat-label>Select Your Reservation Date</mat-label>
-            <input matInput [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" (dateTimeChange)="selectedDate($event)"
-                placeholder="Reservation Date" />
+            <input matInput [owlDateTime]="dt2" id="dateValue" [owlDateTimeTrigger]="dt2"
+                (dateTimeChange)="selectedDate($event)" placeholder="Reservation Date" />
             <button matSuffix mat-icon-button [owlDateTimeTrigger]="dt2" aria-label="Clear">
                 <mat-icon>calendar_today</mat-icon>
             </button>
@@ -39,6 +39,7 @@
 </div>
 
 <div class="df ai jc" style="padding: 0px 10px;">
-    <button mat-button class="cl bc" (click)="dialogClose()">Cancel</button>
-    <button mat-button class="cl bc" (click)="saveDetails()">Save</button>
+    <button mat-button class="cl bc" id="cancelBtn" (click)="dialogClose()">Cancel</button>
+    <button mat-button class="cl bc" id="saveBtn" [style.background-color]="(user?.name ) ? '#0086da' : 'lightgrey' "
+        [disabled]="!(user?.name)" (click)="saveDetails()">Save</button>
 </div>

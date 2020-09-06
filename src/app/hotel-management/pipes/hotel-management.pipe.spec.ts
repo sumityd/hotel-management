@@ -1,8 +1,11 @@
 import { HotelManagementPipe } from "./hotel-management.pipe";
-import { pipe } from "rxjs";
 
 describe("HotelManagementPipe", () => {
-  const pipe = new HotelManagementPipe();
+  let pipe: HotelManagementPipe;
+
+  beforeEach(() => {
+    pipe = new HotelManagementPipe();
+  });
 
   it("create an instance", () => {
     expect(pipe).toBeTruthy();
